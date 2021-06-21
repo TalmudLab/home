@@ -17,7 +17,7 @@ export default function Post({document, author, date}) {
         className="w-11/12 md:w-2/3 xl:w-1/2 rounded-lg border shadow-lg p-10">
         <Link href="/">← Home</Link>
         <Heading size={2}>
-          {docNameToTitle(document.title)}
+          {document?.title ? docNameToTitle(document.title) : "Loading..."}
         </Heading>
         <span className="text-gray-400">
           {author}, {date}
