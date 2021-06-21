@@ -8,7 +8,7 @@ type props = {
 
 
 
-function fromContent (data: ContentData): ReactNode | string | false {
+function fromContent (data: ContentData, index: number): ReactNode | string | false {
   if (typeof data == "string") {
     return data;
   }
@@ -16,7 +16,8 @@ function fromContent (data: ContentData): ReactNode | string | false {
   if ("element" in data) {
     const attributes = {
       ...(data.style && {style: data.style}),
-      ...(data.attrs)
+      ...(data.attrs),
+      key: index
     }
     return createElement(data.element, attributes, fromContentArray(data.children));
   }
@@ -31,7 +32,7 @@ function fromContent (data: ContentData): ReactNode | string | false {
   return false;
 }
 function fromContentArray (contentArray: ProcessedContent) {
-  return contentArray.map(data => fromContent(data)).filter(Boolean) as Array<ReactNode>;
+  return contentArray.map( (data, index) => fromContent(data, index)).filter(Boolean) as Array<ReactNode>;
 }
 
 export default function DocRenderer ({content}: props) {

@@ -16,12 +16,13 @@ export default function Home({posts}) {
           We're a small team working on open-source research in digital humanities, data analysis, and UX
           with the goal of creating the best possible digital talmud experience.
         </p>
+
         <Heading size={2} centered>Projects</Heading>
 
         <Heading size={2} centered>Blog Posts</Heading>
 
         {posts.map(post => (
-          <div className="flex items-center">
+          <div className="flex items-center" key={post.path}>
             <Heading>
               <span className="hover:text-blue-400">
               <Link href={`/posts/${post.path}`}>{post.name}</Link>
