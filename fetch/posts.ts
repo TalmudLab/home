@@ -6,8 +6,10 @@ if (process.env.NODE_ENV == "production") {
 
   config = {
     client_email: process.env.CLIENT_EMAIL,
-    private_ley: process.env.PRIVATE_KEY
+    private_key: process.env.PRIVATE_KEY
   };
+
+  console.log("Config is set to", config);
 
 } else {
   config = require("../docsconfig.json")
