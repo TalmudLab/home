@@ -6,7 +6,7 @@ if (process.env.NODE_ENV == "production") {
 
   config = {
     client_email: process.env.CLIENT_EMAIL,
-    private_key: process.env.PRIVATE_KEY
+    private_key: process.env.PRIVATE_KEY.replace(/\\n/gm, '\n')
   };
 
   console.log("Config is set to", config);
