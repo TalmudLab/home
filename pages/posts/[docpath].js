@@ -1,9 +1,12 @@
 import fetchPosts, {fetchPost} from "../../fetch/posts"
-import docNameToPath from "../../utils/docNameToPath";
+import {docNameToAuthor, docNameToPath, docNameToTitle} from "../../utils/docNameParse";
 import DocRenderer from "../../components/DocRenderer";
 import {componentsFromDoc} from "google-docs-components";
+import Heading from "../../components/Heading";
+import Link from "next/link"
+import {dateFormat} from "../../utils/docDateFormat";
 
-export default function Post({document}) {
+export default function Post({document, author, date}) {
 
   const renderer = document?.body ?
     <DocRenderer content={document.body}></DocRenderer> : "Doc not loaded";
@@ -12,9 +15,17 @@ export default function Post({document}) {
     <div className="flex items-center justify-center h-screen">
       <div
         className="w-11/12 md:w-2/3 xl:w-1/2 rounded-lg border shadow-lg p-10">
-        <div>
-          {renderer}
-        </div>
+        <Link href="/">← Home</Link>
+        <Heading size={2}>
+          {docNameToTitle(document.title)}
+        </Heading>
+        <span className="text-gray-400">
+          {author}, {date}
+        </span>
+          <article className={"prose lg:prose-xl"}>
+            {renderer}
+          </article>
+
       </div>
     </div>);
 }
@@ -35,7 +46,8 @@ export async function getStaticProps(context) {
 
   const processed = componentsFromDoc({components: []}, document)
   return {
-    props: {document: processed}
+    props: {document: processed, author: docNameToAuthor(thisPost.name), date: dateFormat(thisPost.createdTime)},
+    revalidate: 120
   }
 }
 
@@ -50,7 +62,7 @@ export async function getStaticPaths() {
             docpath: docNameToPath(post.name)
           }
         })),
-      fallback: false,
+      fallback: true,
     }
   }
 }

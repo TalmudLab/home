@@ -2,7 +2,9 @@ import Heading from "../components/Heading"
 import Image from "next/image"
 import Link from "next/link"
 import mainPic from "../public/shaun_dan.jpg"
-import docNameToPath from "../utils/docNameToPath";
+import {docNameToPath, docNameToAuthor, docNameToTitle} from "../utils/docNameParse";
+import fetchPosts from "../fetch/posts"
+import {dateFormat} from "../utils/docDateFormat";
 export default function Home({posts}) {
   return (
     <div className="flex items-center justify-center h-screen">
@@ -18,17 +20,23 @@ export default function Home({posts}) {
 
         <Heading size={2} centered>Blog Posts</Heading>
 
-        {posts.map(post => (<Heading>
-          <Link href={`/posts/${docNameToPath(post.name)}`}>{post.name}</Link>
-        </Heading>))}
+        {posts.map(post => (
+          <div className="flex items-center">
+            <Heading>
+              <span className="hover:text-blue-400">
+              <Link href={`/posts/${post.path}`}>{post.name}</Link>
+              </span>
+            </Heading>
+            <div className="ml-2 font-spectral text-gray-400">
+              · {post.author} · {post.date}
+            </div >
+          </div>
+        ))}
       </div>
 
     </div>
   )
 }
-
-
-import fetchPosts from "../fetch/posts"
 
 
 export async function getStaticProps(context) {
@@ -39,11 +47,17 @@ export async function getStaticProps(context) {
     return {}
   }
 
-  console.log(rawPosts);
-  const mapped = rawPosts.map( post => ({name: post.name, path: docNameToPath(post.name)}));
+  const mapped = rawPosts.map( post => (
+    {
+      name: docNameToTitle(post.name),
+      path: docNameToPath(post.name),
+      date: dateFormat(post.createdTime),
+      author: docNameToAuthor(post.name)
+    }));
 
+  console.log(mapped);
   return {
     props: { posts: mapped }, // will be passed to the page component as props
-    revalidate: 100
+    revalidate: 120
   }
 }

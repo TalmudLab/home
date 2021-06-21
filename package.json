@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.4.1",
     "google-docs-components": "^1.0.1",
     "google-docs-parser": "^1.0.2",
     "next": "11.0.0",
