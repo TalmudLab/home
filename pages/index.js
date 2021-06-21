@@ -1,5 +1,6 @@
 import Heading from "../components/Heading"
 import Image from "next/image"
+import Link from "next/link"
 import mainPic from "../public/shaun_dan.jpg"
 import docNameToPath from "../utils/docNameToPath";
 export default function Home({posts}) {
@@ -17,7 +18,9 @@ export default function Home({posts}) {
 
         <Heading size={2} centered>Blog Posts</Heading>
 
-        {posts.map(post => (<Heading>{post.name}</Heading>))}
+        {posts.map(post => (<Heading>
+          <Link href={`/posts/${docNameToPath(post.name)}`}>{post.name}</Link>
+        </Heading>))}
       </div>
 
     </div>

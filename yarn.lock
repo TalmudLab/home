@@ -1626,16 +1626,16 @@ google-auth-library@^7.0.2:
     lru-cache "^6.0.0"
 
 google-docs-components@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/google-docs-components/-/google-docs-components-1.0.1.tgz#3eeed21e06a7ba835933143cf45c8848243d2c0d"
-  integrity sha512-NUsMKxGwKLumHUWWohxg/nKZ/p1BKP9gaKIVfm8qiNxaw9k8+HB8qIEZbguMuT0eBiMXq/Jqgx/2D6J0kwClQQ==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/google-docs-components/-/google-docs-components-1.0.3.tgz#c4c2fd8c83c8f9aee34b9fb33d9487f239ebe5b4"
+  integrity sha512-IBHDjiQHosUtYeFCIqewhluOgVyNtPYPchsqMbBS34zFfriEigdj0VAv9iMd3qS/EtYm3LK3PmgoW1Qe6UUzhA==
   dependencies:
     google-docs-parser "workspace:*"
 
 google-docs-parser@^1.0.2, "google-docs-parser@workspace:*":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/google-docs-parser/-/google-docs-parser-1.0.4.tgz#3b8c457aace5e26cda85ac0985d882b8d5f2ccb8"
-  integrity sha512-hTSytd9O8CI0Ru3wrCXHIll6r9dQV/725H78Knb/FPl92Oz+r/lNOiQPyLUUmmquuCyugo1LpjHAAHXiCkpuBA==
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/google-docs-parser/-/google-docs-parser-1.0.5.tgz#4852320de26acd6b8e445e1afb3ffbd59f449f6a"
+  integrity sha512-bS2lN+ol6xKv0A6cT7jUcs2EntypOSmEwgcFdPf3oonG1suPx2ijcKmTXzCfz1KtMXwq3L9xVEow5THHGV2EXQ==
   dependencies:
     "@googleapis/docs" "^0.2.0"
     "@googleapis/drive" "^0.3.1"

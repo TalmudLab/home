@@ -1,11 +1,22 @@
-import fetchPosts, { fetchPost } from "../../fetch/posts"
+import fetchPosts, {fetchPost} from "../../fetch/posts"
 import docNameToPath from "../../utils/docNameToPath";
 import DocRenderer from "../../components/DocRenderer";
+import {componentsFromDoc} from "google-docs-components";
 
 export default function Post({document}) {
-  return (<div>
-    <DocRenderer document={document}></DocRenderer>
-  </div>)
+
+  const renderer = document?.body ?
+    <DocRenderer content={document.body}></DocRenderer> : "Doc not loaded";
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div
+        className="w-11/12 md:w-2/3 xl:w-1/2 rounded-lg border shadow-lg p-10">
+        <div>
+          {renderer}
+        </div>
+      </div>
+    </div>);
 }
 
 /*
@@ -21,11 +32,12 @@ export async function getStaticProps(context) {
   const thisPost = posts.find(post => docNameToPath(post.name) == docPath)
 
   const document = await fetchPost(thisPost.id)
+
+  const processed = componentsFromDoc({components: []}, document)
   return {
-    props: {document}
+    props: {document: processed}
   }
 }
-
 
 
 export async function getStaticPaths() {
