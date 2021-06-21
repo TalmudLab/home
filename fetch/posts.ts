@@ -1,7 +1,17 @@
 
 import {getDoc, getFilesInFolder, parseDoc} from "google-docs-parser";
 
-import config from "../docsconfig.json";
+let config;
+if (process.env.NODE_ENV == "production") {
+
+  config = {
+    client_email: process.env.CLIENT_EMAIL,
+    private_ley: process.env.PRIVATE_KEY
+  };
+
+} else {
+  config = require("../docsconfig.json")
+}
 
 
 const folder = "1DV0L1n7SBVZCUIhtONhvdOcceWmftSM-";
