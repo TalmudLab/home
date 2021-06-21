@@ -1,6 +1,6 @@
 
 export function docNameToPath (name) {
-  return docNameToTitle(name).replaceAll(" ", "_").toLowerCase();
+  return docNameToTitle(name).replace(/ /g, "_").toLowerCase();
 }
 
 export function docNameToTitle(name) {
