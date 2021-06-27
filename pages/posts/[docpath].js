@@ -12,9 +12,9 @@ export default function Post({document, author, date}) {
     <DocRenderer content={document.body}></DocRenderer> : "Doc not loaded";
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex justify-center h-screen">
       <div
-        className="w-11/12 md:w-2/3 xl:w-1/2 rounded-lg border shadow-lg p-10">
+        className="w-auto xl:w-1/2 rounded-lg border shadow-lg p-10">
         <Link href="/">← Home</Link>
         <Heading size={2}>
           {document?.title ? docNameToTitle(document.title) : "Loading..."}
@@ -22,9 +22,9 @@ export default function Post({document, author, date}) {
         <span className="text-gray-400">
           {author}, {date}
         </span>
-          <article className={"prose lg:prose-xl"}>
-            {renderer}
-          </article>
+        <article className={"prose lg:prose-xl max-w-none"}>
+          {renderer}
+        </article>
 
       </div>
     </div>);

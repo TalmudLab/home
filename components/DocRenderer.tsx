@@ -36,7 +36,7 @@ function fromContentArray (contentArray: ProcessedContent) {
 }
 
 export default function DocRenderer ({content}: props) {
-  return (<div>
+  return (<div className="w-full">
     {fromContentArray(content)}
   </div>)
 }
