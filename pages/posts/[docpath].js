@@ -12,9 +12,9 @@ export default function Post({document, author, date}) {
     <DocRenderer content={document.body}></DocRenderer> : "Doc not loaded";
 
   return (
-    <div className="flex justify-center h-screen">
+    <div className="flex justify-center">
       <div
-        className="w-auto xl:w-1/2 rounded-lg border shadow-lg p-10">
+        className="w-auto xl:w-1/2 rounded-lg border mb-1 shadow-lg p-10">
         <Link href="/">← Home</Link>
         <Heading size={2}>
           {document?.title ? docNameToTitle(document.title) : "Loading..."}
